@@ -8,13 +8,26 @@ namespace SkalProj_Datastrukturer_Minne
          * 
          * 1. Hur fungerar stacken och heapen? Förklara gärna med exempel eller skiss på dess grundläggande funktion
          * 
+         * Stacken är en mängd staplade skolådor där vi använder innehållet i den översta lådan. För att komma åt den undre måste 
+         * den ovanstående flyttas bort. Stacken är självunderhållande och behöver inget hjälp med minnet.
+         * Heapen är en oorganiseras hög av ren tvätt. Allt finns tillgängligt hela tiden, men tappar du bort vad du letar efter
+         * finns det inga garantier på att du hittar det igen. Heapen behöver oroa sig för Garbage Collection.
+         * 
          * 
          * 
          * 2. Vad är Value Types respektive Reference Types och vad skiljer dem åt?
          * 
+         * Value Types är typer från System.ValueType. 
+         * Reference Types är typer som ärver från System.Object
+         * Value Types kan lagras både på stacken och heapen, medan Reference Types alltid lagras på heapen.
+         * 
          * 
          * 
          * 3. Följande metoder (se bild nedan) genererar olika svar. Den första returnerar 3, den andra returnerar 4, varför?
+         * 
+         * Den första metoden använder sig av Value Types (int) där värdet för x inte överskrids när man byter värdet för y.
+         * Den andra metoden använder sig av Reference Types (objektet MyInt). x och y pekar på samma objekt, vilket resulterar i att
+         * x ändrar värde när man uppdaterar y.
          */
 
         /// <summary>
