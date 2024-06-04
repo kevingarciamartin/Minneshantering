@@ -4,8 +4,21 @@ namespace SkalProj_Datastrukturer_Minne
 {
     class Program
     {
+        /* FRÅGOR
+         * 
+         * 1. Hur fungerar stacken och heapen? Förklara gärna med exempel eller skiss på dess grundläggande funktion
+         * 
+         * 
+         * 
+         * 2. Vad är Value Types respektive Reference Types och vad skiljer dem åt?
+         * 
+         * 
+         * 
+         * 3. Följande metoder (se bild nedan) genererar olika svar. Den första returnerar 3, den andra returnerar 4, varför?
+         */
+
         /// <summary>
-        /// The main method, vill handle the menues for the program
+        /// The main method, will handle the menues for the program
         /// </summary>
         /// <param name="args"></param>
         static void Main()
