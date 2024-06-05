@@ -45,15 +45,18 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParenthesis"
                     + "\n0. Exit the application");
+                Console.WriteLine();
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
                 {
                     input = Console.ReadLine()![0]; //Tries to set input to the first char in an input line
+                    Console.WriteLine();
                 }
                 catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
                 {
                     Console.Clear();
                     Console.WriteLine("Please enter some input!");
+                    Console.WriteLine();
                 }
                 switch (input)
                 {
@@ -78,6 +81,7 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                     default:
                         Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
+                        Console.WriteLine();
                         break;
                 }
             }
@@ -89,21 +93,94 @@ namespace SkalProj_Datastrukturer_Minne
         static void ExamineList()
         {
             /*
-             * Loop this method untill the user inputs something to exit to main menue.
+             * Loop this method untill the user inputs something to exit to main menu.
              * Create a switch statement with cases '+' and '-'
              * '+': Add the rest of the input to the list (The user could write +Adam and "Adam" would be added to the list)
              * '-': Remove the rest of the input from the list (The user could write -Adam and "Adam" would be removed from the list)
              * In both cases, look at the count and capacity of the list
              * As a default case, tell them to use only + or -
              * Below you can see some inspirational code to begin working.
-            */
+             */
 
-            //List<string> theList = new List<string>();
-            //string input = Console.ReadLine();
-            //char nav = input[0];
-            //string value = input.substring(1);
+            /* FRÅGOR
+             * 
+             * 1.2. När ökar listans kapacitet? (Alltså den underliggande arrayens storlek)
+             * 
+             * Den ökar när listan har nått sin maxkapacitet och man försöker addera ett till element.
+             * 
+             * 
+             * 
+             * 1.3. Med hur mycket ökar kapaciteten?
+             * 
+             * Den ökar med 4.
+             * 
+             * 
+             * 
+             * 1.4. Varför ökar inte listans kapacitet i samma takt som element läggs till?
+             * 
+             * Möjligtvis för att inte behöva öka kapaciteten varje gång man vill addera ett element.
+             * 
+             * 
+             * 
+             * 1.5. Minskar kapaciteten när element tas bort ur listan?
+             * 
+             * Nej, den minskar inte.
+             * 
+             * 
+             * 
+             * 1.6. När är det då fördelaktigt att använda en egendefinierad array istället för en lista?
+             * 
+             * När man vill ha en maxkapacitet som inte kan överskridas.
+             */
 
-            //switch(nav){...}
+            List<string> theList = new List<string>();
+            char selectedAction;
+            const char exitAction = 'm';
+
+            do
+            {
+                Console.WriteLine("Please navigate through the menu by inputting the character \n(+, -) of your choice"
+                    + "\n+. Add the rest of the input to the list"
+                    + "\n-. Remove the rest of the input from the list"
+                    + "\nm. Return to the main menu");
+                Console.WriteLine();
+
+                string? input = Console.ReadLine() ?? string.Empty;
+                Console.WriteLine();
+
+                selectedAction = input[0];
+                string value = input.Substring(1);
+
+                switch (selectedAction)
+                {
+                    case '+':
+                        theList.Add(value);
+                        PrintList(theList);
+                        break;
+                    case '-':
+                        theList.Remove(value);
+                        PrintList(theList);
+                        break;
+                    case exitAction:
+                        break;
+                    default:
+                        Console.WriteLine("Please enter some valid input (+, -, M)");
+                        Console.WriteLine();
+                        break;
+                }
+
+            } while (selectedAction != exitAction);
+
+        }
+
+        private static void PrintList(List<string> theList)
+        {
+            Console.WriteLine("The List:");
+            foreach (var item in theList)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine();
         }
 
         /// <summary>
