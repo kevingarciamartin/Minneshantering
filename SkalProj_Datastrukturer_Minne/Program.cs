@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace SkalProj_Datastrukturer_Minne
 {
@@ -39,7 +40,7 @@ namespace SkalProj_Datastrukturer_Minne
 
             while (true)
             {
-                Console.WriteLine("Please navigate through the menu by inputting the number \n(1, 2, 3 ,4, 0) of your choice"
+                Console.WriteLine("Please navigate through the menu by inputing the number \n(1, 2, 3 ,4, 0) of your choice"
                     + "\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
@@ -133,13 +134,13 @@ namespace SkalProj_Datastrukturer_Minne
              * När man vill ha en maxkapacitet som inte kan överskridas.
              */
 
-            List<string> theList = new List<string>();
+            List<string> theList = new();
             char selectedAction;
             const char exitAction = 'm';
 
             do
             {
-                Console.WriteLine("Please navigate through the menu by inputting the character \n(+, -) of your choice"
+                Console.WriteLine("Please navigate through the menu by inputing the character \n(+, -) of your choice"
                     + "\n+. Add the rest of the input to the list"
                     + "\n-. Remove the rest of the input from the list"
                     + "\nm. Return to the main menu");
@@ -155,11 +156,11 @@ namespace SkalProj_Datastrukturer_Minne
                 {
                     case '+':
                         theList.Add(value);
-                        PrintList(theList);
+                        PrintIEnumerable(theList);
                         break;
                     case '-':
                         theList.Remove(value);
-                        PrintList(theList);
+                        PrintIEnumerable(theList);
                         break;
                     case exitAction:
                         break;
@@ -173,10 +174,14 @@ namespace SkalProj_Datastrukturer_Minne
 
         }
 
-        private static void PrintList(List<string> theList)
+        private static void PrintIEnumerable(IEnumerable<string> enumerable)
         {
-            Console.WriteLine("The List:");
-            foreach (var item in theList)
+            if (enumerable is List<string>)
+                Console.WriteLine("The List:");
+            else if (enumerable is Queue<string>)
+                Console.WriteLine("The Queue:");
+
+            foreach (var item in enumerable)
             {
                 Console.WriteLine(item);
             }
@@ -193,6 +198,51 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to enqueue items or dequeue items
              * Make sure to look at the queue after Enqueueing and Dequeueing to see how it behaves
             */
+
+            Queue<string> theQueue = new();
+            char selectedAction;
+            const char exitAction = 'm';
+            do {
+                Console.WriteLine("Please navigate through the menu by inputing the character \n(+, -) of your choice"
+                        + "\n+. Enqueue rest of the input"
+                        + "\n-. Dequeue first person in queue"
+                        + "\nm. Return to the main menu");
+                Console.WriteLine();
+
+                string? input = Console.ReadLine() ?? string.Empty;
+                Console.WriteLine();
+
+                selectedAction = input[0];
+                string value = input.Substring(1);
+
+                switch (selectedAction)
+                {
+                    case '+':
+                        theQueue.Enqueue(value);
+                        PrintIEnumerable(theQueue);
+                        break;
+                    case '-':
+                        try
+                        {
+                            theQueue.Dequeue();
+                            PrintIEnumerable(theQueue);
+                        }
+                        catch (Exception)
+                        {
+                            Console.WriteLine("The queue is empty");
+                            Console.WriteLine();
+                        }
+                        break;
+                    case exitAction:
+                        break;
+                    default:
+                        Console.WriteLine("Please enter some valid input (+, -, M)");
+                        Console.WriteLine();
+                        break;
+                }
+
+            } while (selectedAction != exitAction);
+
         }
 
         /// <summary>
