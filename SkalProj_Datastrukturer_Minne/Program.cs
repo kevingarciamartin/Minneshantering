@@ -40,13 +40,13 @@ namespace SkalProj_Datastrukturer_Minne
 
             while (true)
             {
-                WriteLine("Please navigate through the menu by inputing the number \n(1, 2, 3 ,4, 0) of your choice"
-                    + "\n1. Examine a List"
-                    + "\n2. Examine a Queue"
-                    + "\n3. Examine a Stack"
-                    + "\n4. CheckParenthesis"
-                    + "\n5. Recursion"
-                    + "\n0. Exit the application");
+                WriteLine("Please navigate through the menu by inputing the number \n(1, 2, 3 ,4, 0) of your choice."
+                    + "\n1. Examine a List."
+                    + "\n2. Examine a Queue."
+                    + "\n3. Examine a Stack."
+                    + "\n4. CheckParenthesis."
+                    + "\n5. Recursion."
+                    + "\n0. Exit the application.");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
                 {
@@ -83,7 +83,7 @@ namespace SkalProj_Datastrukturer_Minne
                         Environment.Exit(0);
                         break;
                     default:
-                        WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
+                        WriteLine("Please enter some valid input (0, 1, 2, 3, 4).");
                         break;
                 }
             }
@@ -96,10 +96,10 @@ namespace SkalProj_Datastrukturer_Minne
 
             do
             {
-                WriteLine("Please navigate through the menu by inputing the character \n(1, 2, m) of your choice"
-                    + "\n1. Calculate the n:th even integer"
-                    + "\n2. Calculate the n:th integer in the Fibonacci sequence"
-                    + "\nm. Return to the main menu");
+                WriteLine("Please navigate through the menu by inputing the character \n(1, 2, m) of your choice."
+                    + "\n1. Calculate the n:th even integer."
+                    + "\n2. Calculate the n:th integer in the Fibonacci sequence."
+                    + "\nm. Return to the main menu.");
 
                 string input = GetInput();
 
@@ -108,15 +108,15 @@ namespace SkalProj_Datastrukturer_Minne
                 switch (selectedAction)
                 {
                     case '1':
-                        CallRecursiveEven();
+                        PrintRecursiveEven();
                         break;
                     case '2':
-                        
+                        PrintRecursiveFibonacci();
                         break;
                     case exitAction:
                         break;
                     default:
-                        WriteLine("Please enter some valid input (+, -, m)");
+                        WriteLine("Please enter some valid input (1, 2, m).");
                         break;
                 }
 
@@ -124,20 +124,48 @@ namespace SkalProj_Datastrukturer_Minne
 
         }
 
-        private static void CallRecursiveEven()
+        private static void PrintRecursiveEven()
         {
-            WriteLine("Please input an integer");
+            int integer = GetIntegerInput();
+
+            Console.Write($"RecursiveEven({integer}) = ");
+            WriteLine(RecursiveEven(integer));
+        }
+
+        private static void PrintRecursiveFibonacci()
+        {
+            int integer = GetIntegerInput();
+
+            Console.Write($"RecursiveFibonacci({integer}) = ");
+            WriteLine(RecursiveFibonacci(integer));
+        }
+
+        private static int GetIntegerInput()
+        {
+            WriteLine("Please input an integer.");
 
             string input = GetInput();
 
-            try
-            {
-                int integer = int.Parse(input);
+            bool isParsed = int.TryParse(input, out int integer);
 
-                Console.Write($"RecursiveEven({integer}) = ");
-                WriteLine(RecursiveEven(integer));
-            }
-            catch (Exception ex) { WriteLine(ex.Message); }
+            //ToDo: Find a better solution for validation
+            if (integer < 0)
+                throw new ArgumentOutOfRangeException();
+
+            if (isParsed)
+                return integer;
+            else
+                throw new ArgumentException();
+        }
+
+        private static int RecursiveFibonacci(int n)
+        {
+            if (n == 0)
+                return 0;
+            else if (n == 1)
+                return 1;
+
+            return (RecursiveFibonacci(n - 1) + RecursiveFibonacci(n - 2));
         }
 
         private static int RecursiveEven(int n)
@@ -206,10 +234,10 @@ namespace SkalProj_Datastrukturer_Minne
 
             do
             {
-                WriteLine("Please navigate through the menu by inputing the character \n(+, -, m) of your choice"
-                    + "\n+. Add the rest of the input to the list"
-                    + "\n-. Remove the rest of the input from the list"
-                    + "\nm. Return to the main menu");
+                WriteLine("Please navigate through the menu by inputing the character \n(+, -, m) of your choice."
+                    + "\n+. Add the rest of the input to the list."
+                    + "\n-. Remove the rest of the input from the list."
+                    + "\nm. Return to the main menu.");
 
                 string input = GetInput();
 
@@ -229,7 +257,7 @@ namespace SkalProj_Datastrukturer_Minne
                     case exitAction:
                         break;
                     default:
-                        WriteLine("Please enter some valid input (+, -, m)");
+                        WriteLine("Please enter some valid input (+, -, m).");
                         break;
                 }
 
@@ -275,10 +303,10 @@ namespace SkalProj_Datastrukturer_Minne
             const char exitAction = 'm';
 
             do {
-                WriteLine("Please navigate through the menu by inputing the character \n(+, -, m) of your choice"
-                        + "\n+. Enqueue rest of the input"
-                        + "\n-. Dequeue first item in queue"
-                        + "\nm. Return to the main menu");
+                WriteLine("Please navigate through the menu by inputing the character \n(+, -, m) of your choice."
+                        + "\n+. Enqueue rest of the input."
+                        + "\n-. Dequeue first item in queue."
+                        + "\nm. Return to the main menu.");
 
                 string input = GetInput();
 
@@ -299,13 +327,13 @@ namespace SkalProj_Datastrukturer_Minne
                         }
                         catch (Exception)
                         {
-                            WriteLine("The queue is empty");
+                            WriteLine("The queue is empty.");
                         }
                         break;
                     case exitAction:
                         break;
                     default:
-                        WriteLine("Please enter some valid input (+, -, m)");
+                        WriteLine("Please enter some valid input (+, -, m).");
                         break;
                 }
 
@@ -333,7 +361,7 @@ namespace SkalProj_Datastrukturer_Minne
              * så länge det kommer nya kunder.
              */
 
-            WriteLine("Please enter a string that you would like to see reversed");
+            WriteLine("Please enter a string that you would like to see reversed.");
 
             string input = GetInput();
 
@@ -369,7 +397,7 @@ namespace SkalProj_Datastrukturer_Minne
 
             Stack<char> openedParentheses = new();
 
-            WriteLine("Please enter a string inluding some of the following characters: (, ), [, ], {, }");
+            WriteLine("Please enter a string inluding some of the following characters: (, ), [, ], {, }.");
 
             string input = GetInput();
 
@@ -390,9 +418,9 @@ namespace SkalProj_Datastrukturer_Minne
             }
 
             if (openedParentheses.Count == 0)
-                WriteLine("Your string is CORRECT");
+                WriteLine("Your string is CORRECT.");
             else
-                WriteLine("Your string is INCORRECT");
+                WriteLine("Your string is INCORRECT.");
         }
 
         private static bool IsOpeningParenthesis(char inputChar)
