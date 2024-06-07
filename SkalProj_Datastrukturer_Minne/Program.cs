@@ -40,13 +40,12 @@ namespace SkalProj_Datastrukturer_Minne
 
             while (true)
             {
-                Console.WriteLine("Please navigate through the menu by inputing the number \n(1, 2, 3 ,4, 0) of your choice"
+                WriteLine("Please navigate through the menu by inputing the number \n(1, 2, 3 ,4, 0) of your choice"
                     + "\n1. Examine a List"
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParenthesis"
                     + "\n0. Exit the application");
-                Console.WriteLine();
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
                 {
@@ -56,8 +55,7 @@ namespace SkalProj_Datastrukturer_Minne
                 catch (IndexOutOfRangeException) //If the input line is empty, we ask the users for some input.
                 {
                     Console.Clear();
-                    Console.WriteLine("Please enter some input!");
-                    Console.WriteLine();
+                    WriteLine("Please enter some input!");
                 }
                 switch (input)
                 {
@@ -81,11 +79,16 @@ namespace SkalProj_Datastrukturer_Minne
                         Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
-                        Console.WriteLine();
+                        WriteLine("Please enter some valid input (0, 1, 2, 3, 4)");
                         break;
                 }
             }
+        }
+
+        private static void WriteLine(string message)
+        {
+            Console.WriteLine(message);
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -140,14 +143,12 @@ namespace SkalProj_Datastrukturer_Minne
 
             do
             {
-                Console.WriteLine("Please navigate through the menu by inputing the character \n(+, -) of your choice"
+                WriteLine("Please navigate through the menu by inputing the character \n(+, -) of your choice"
                     + "\n+. Add the rest of the input to the list"
                     + "\n-. Remove the rest of the input from the list"
                     + "\nm. Return to the main menu");
-                Console.WriteLine();
 
-                string? input = Console.ReadLine() ?? string.Empty;
-                Console.WriteLine();
+                string input = GetInput();
 
                 selectedAction = input[0];
                 string value = input.Substring(1);
@@ -165,13 +166,20 @@ namespace SkalProj_Datastrukturer_Minne
                     case exitAction:
                         break;
                     default:
-                        Console.WriteLine("Please enter some valid input (+, -, M)");
-                        Console.WriteLine();
+                        WriteLine("Please enter some valid input (+, -, M)");
                         break;
                 }
 
             } while (selectedAction != exitAction);
 
+        }
+
+        private static string GetInput()
+        {
+            string input = Console.ReadLine() ?? string.Empty;
+            Console.WriteLine();
+
+            return input;
         }
 
         private static void PrintIEnumerable(IEnumerable<string> enumerable)
@@ -202,15 +210,14 @@ namespace SkalProj_Datastrukturer_Minne
             Queue<string> theQueue = new();
             char selectedAction;
             const char exitAction = 'm';
-            do {
-                Console.WriteLine("Please navigate through the menu by inputing the character \n(+, -) of your choice"
-                        + "\n+. Enqueue rest of the input"
-                        + "\n-. Dequeue first person in queue"
-                        + "\nm. Return to the main menu");
-                Console.WriteLine();
 
-                string? input = Console.ReadLine() ?? string.Empty;
-                Console.WriteLine();
+            do {
+                WriteLine("Please navigate through the menu by inputing the character \n(+, -) of your choice"
+                        + "\n+. Enqueue rest of the input"
+                        + "\n-. Dequeue first item in queue"
+                        + "\nm. Return to the main menu");
+
+                string input = GetInput();
 
                 selectedAction = input[0];
                 string value = input.Substring(1);
@@ -229,15 +236,13 @@ namespace SkalProj_Datastrukturer_Minne
                         }
                         catch (Exception)
                         {
-                            Console.WriteLine("The queue is empty");
-                            Console.WriteLine();
+                            WriteLine("The queue is empty");
                         }
                         break;
                     case exitAction:
                         break;
                     default:
-                        Console.WriteLine("Please enter some valid input (+, -, M)");
-                        Console.WriteLine();
+                        WriteLine("Please enter some valid input (+, -, M)");
                         break;
                 }
 
@@ -255,6 +260,40 @@ namespace SkalProj_Datastrukturer_Minne
              * Create a switch with cases to push or pop items
              * Make sure to look at the stack after pushing and and poping to see how it behaves
             */
+
+            /* FRÅGOR
+             * 
+             * 3.1. Simulera ännu en gång ICA-kön på papper. Denna gång med en stack. 
+             * Varför är det inte så smart att använda en stack i det här fallet?
+             * 
+             * Eftersom att en stack implementerar FILO-principen kommer den första kunden aldrig expideras 
+             * så länge det kommer nya kunder.
+             */
+
+            ReverseText();
+        }
+
+        private static void ReverseText()
+        {
+            Stack<char> theStack = new();
+
+            WriteLine("Please enter a string that you would like to see reversed");
+
+            string input = GetInput();
+
+            char[] inputCharArray = input.ToCharArray();
+
+            foreach (var inputChar in inputCharArray)
+            {
+                theStack.Push(inputChar);
+            }
+
+            foreach (var item in theStack)
+            {
+                Console.Write(item);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
         static void CheckParanthesis()
