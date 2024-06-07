@@ -182,11 +182,11 @@ namespace SkalProj_Datastrukturer_Minne
             return input;
         }
 
-        private static void PrintIEnumerable(IEnumerable<string> enumerable)
+        private static void PrintIEnumerable<T>(IEnumerable<T> enumerable)
         {
-            if (enumerable is List<string>)
+            if (enumerable is List<T>)
                 Console.WriteLine("The List:");
-            else if (enumerable is Queue<string>)
+            else if (enumerable is Queue<T>)
                 Console.WriteLine("The Queue:");
 
             foreach (var item in enumerable)
