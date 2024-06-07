@@ -83,6 +83,14 @@ namespace SkalProj_Datastrukturer_Minne
                     case '6':
                         CallIterativeFunctions();
                         break;
+
+                    /* FRÅGA
+                     * 
+                     * Vilken av ovanstående funktioner (rekursiv vs iterativ) är mest minnesvänlig och varför?
+                     * 
+                     * De iterativa funktionerna är mer minnesvänliga då varje rekursivt metodanrop lagrar data.
+                     */
+
                     case '0':
                         Environment.Exit(0);
                         break;
