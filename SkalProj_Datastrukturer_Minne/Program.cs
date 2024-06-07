@@ -306,7 +306,7 @@ namespace SkalProj_Datastrukturer_Minne
 
             Stack<char> openedParentheses = new();
 
-            WriteLine("Please enter a string inluding the following characters: (, ), [, ], {, }");
+            WriteLine("Please enter a string inluding some of the following characters: (, ), [, ], {, }");
 
             string input = GetInput();
 
