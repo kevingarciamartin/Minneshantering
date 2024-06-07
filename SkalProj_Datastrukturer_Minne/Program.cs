@@ -46,6 +46,7 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n3. Examine a Stack."
                     + "\n4. CheckParenthesis."
                     + "\n5. Recursion."
+                    + "\n6. Iteration."
                     + "\n0. Exit the application.");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -79,6 +80,9 @@ namespace SkalProj_Datastrukturer_Minne
                     case '5':
                         CallRecursiveFunctions();
                         break;
+                    case '6':
+                        CallIterativeFunctions();
+                        break;
                     case '0':
                         Environment.Exit(0);
                         break;
@@ -87,6 +91,84 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                 }
             }
+        }
+
+        private static void CallIterativeFunctions()
+        {
+            char selectedAction;
+            const char exitAction = 'm';
+
+            do
+            {
+                WriteLine("Please navigate through the menu by inputing the character \n(1, 2, m) of your choice."
+                    + "\n1. Calculate the n:th even integer."
+                    + "\n2. Calculate the n:th integer in the Fibonacci sequence."
+                    + "\nm. Return to the main menu.");
+
+                string input = GetInput();
+
+                selectedAction = input[0];
+
+                switch (selectedAction)
+                {
+                    case '1':
+                        PrintIterativeEven();
+                        break;
+                    case '2':
+                        PrintIterativeFibonacci();
+                        break;
+                    case exitAction:
+                        break;
+                    default:
+                        WriteLine("Please enter some valid input (1, 2, m).");
+                        break;
+                }
+
+            } while (selectedAction != exitAction);
+        }
+
+        private static void PrintIterativeFibonacci()
+        {
+            int integer = GetIntegerInput();
+
+            Console.Write($"IterativeFibonacci({integer}) = ");
+            WriteLine(IterativeFibonacci(integer));
+        }
+
+        private static int IterativeFibonacci(int n)
+        {
+            int[] fibonacciSequence = new int[n + 1];
+
+            fibonacciSequence[0] = 0;
+            if (n > 0)
+                fibonacciSequence[1] = 1;
+
+            for (int i = 2; i <= n; i++)
+            {
+                fibonacciSequence[i] = fibonacciSequence[i - 1] + fibonacciSequence[i - 2];
+            }
+
+            return fibonacciSequence[n];
+        }
+
+        private static void PrintIterativeEven()
+        {
+            int integer = GetIntegerInput();
+
+            Console.Write($"IterativeEven({integer}) = ");
+            WriteLine(IterativeEven(integer));
+        }
+
+        private static int IterativeEven(int n)
+        {
+            int result = 0;
+
+            for (int i = 0; i < n - 1; i++)
+            {
+                result += 2;
+            }
+
+            return result;
         }
 
         private static void CallRecursiveFunctions()
