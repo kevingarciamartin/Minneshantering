@@ -314,12 +314,12 @@ namespace SkalProj_Datastrukturer_Minne
 
             foreach (var inputChar in inputCharArray)
             {
-                if (isOpeningParenthesis(inputChar))
+                if (IsOpeningParenthesis(inputChar))
                     openedParentheses.Push(inputChar);
 
-                if (isCloseningParenthesis(inputChar))
+                if (IsCloseningParenthesis(inputChar))
                 {
-                    if (isMatchingParenthesis(openedParentheses.Peek(), inputChar))
+                    if (IsMatchingParenthesis(openedParentheses.Peek(), inputChar))
                         openedParentheses.Pop();
                     else
                         break;
@@ -332,30 +332,32 @@ namespace SkalProj_Datastrukturer_Minne
                 WriteLine("Your string is INCORRECT");
         }
 
-        private static bool isOpeningParenthesis(char inputChar)
+        private static bool IsOpeningParenthesis(char inputChar)
         {
             char[] openingParentheses = ['(', '[', '{'];
             
             return openingParentheses.Contains(inputChar);
         }
         
-        private static bool isCloseningParenthesis(char inputChar)
+        private static bool IsCloseningParenthesis(char inputChar)
         {
             char[] closeningParentheses = [')', ']', '}'];
             
             return closeningParentheses.Contains(inputChar);
         }
-
-        private static bool isMatchingParenthesis(char openParenthesis, char closedParenthesis)
+        
+        private static bool IsMatchingParenthesis(char openParenthesis, char closedParenthesis)
         {
-            if (openParenthesis == '(' && closedParenthesis == ')')
-                return true;
-            else if (openParenthesis == '[' && closedParenthesis == ']')
-                return true;
-            else if (openParenthesis == '{' && closedParenthesis == '}')
-                return true;
+            Dictionary<char, char> validParenthesisPairs = new()
+            {
+                { '(', ')' },
+                { '[', ']' },
+                { '{', '}' }
+            };
 
-            return false;
+            bool isValidPair = validParenthesisPairs[openParenthesis] == closedParenthesis;
+
+            return isValidPair;
         }
     }
 }
