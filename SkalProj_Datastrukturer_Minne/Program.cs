@@ -235,20 +235,20 @@ namespace SkalProj_Datastrukturer_Minne
 
         private static int GetIntegerInput()
         {
-            WriteLine("Please input an integer.");
+            do
+            {
+                WriteLine("Please input an integer.");
 
-            string input = GetInput();
+                string input = GetInput();
 
-            bool isParsed = int.TryParse(input, out int integer);
+                if (!int.TryParse(input, out int integer))
+                    WriteLine("You must enter a valid integer.");
+                else if (integer < 0)
+                    WriteLine("You must enter an integer with a value of 0 or greater.");
+                else
+                    return integer;
 
-            //ToDo: Find a better solution for validation
-            if (integer < 0)
-                throw new ArgumentOutOfRangeException();
-
-            if (isParsed)
-                return integer;
-            else
-                throw new ArgumentException();
+            } while (true);
         }
 
         private static int RecursiveFibonacci(int n)
