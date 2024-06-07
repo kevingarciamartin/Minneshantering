@@ -69,7 +69,7 @@ namespace SkalProj_Datastrukturer_Minne
                         ExamineStack();
                         break;
                     case '4':
-                        CheckParanthesis();
+                        CheckParenthesis();
                         break;
                     /*
                      * Extend the menu to include the recursive 
@@ -296,7 +296,7 @@ namespace SkalProj_Datastrukturer_Minne
             Console.WriteLine();
         }
 
-        static void CheckParanthesis()
+        static void CheckParenthesis()
         {
             /*
              * Use this method to check if the paranthesis in a string is Correct or incorrect.
@@ -304,8 +304,59 @@ namespace SkalProj_Datastrukturer_Minne
              * Example of incorrect: (()]), [), {[()}],  List<int> list = new List<int>() { 1, 2, 3, 4 );
              */
 
+            Stack<char> openedParentheses = new();
+
+            WriteLine("Please enter a string inluding the following characters: (, ), [, ], {, }");
+
+            string input = GetInput();
+
+            char[] inputCharArray = input.ToCharArray();
+
+            foreach (var inputChar in inputCharArray)
+            {
+                if (isOpeningParenthesis(inputChar))
+                    openedParentheses.Push(inputChar);
+
+                if (isCloseningParenthesis(inputChar))
+                {
+                    if (isMatchingParenthesis(openedParentheses.Peek(), inputChar))
+                        openedParentheses.Pop();
+                    else
+                        break;
+                }
+            }
+
+            if (openedParentheses.Count == 0)
+                WriteLine("Your string is CORRECT");
+            else
+                WriteLine("Your string is INCORRECT");
         }
 
+        private static bool isOpeningParenthesis(char inputChar)
+        {
+            char[] openingParentheses = ['(', '[', '{'];
+            
+            return openingParentheses.Contains(inputChar);
+        }
+        
+        private static bool isCloseningParenthesis(char inputChar)
+        {
+            char[] closeningParentheses = [')', ']', '}'];
+            
+            return closeningParentheses.Contains(inputChar);
+        }
+
+        private static bool isMatchingParenthesis(char openParenthesis, char closedParenthesis)
+        {
+            if (openParenthesis == '(' && closedParenthesis == ')')
+                return true;
+            else if (openParenthesis == '[' && closedParenthesis == ']')
+                return true;
+            else if (openParenthesis == '{' && closedParenthesis == '}')
+                return true;
+
+            return false;
+        }
     }
 }
 
