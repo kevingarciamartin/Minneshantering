@@ -45,6 +45,7 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParenthesis"
+                    + "\n5. Calculate the n:th even integer with recursion"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -75,6 +76,9 @@ namespace SkalProj_Datastrukturer_Minne
                      * Extend the menu to include the recursive 
                      * and iterative exercises.
                      */
+                    case '5':
+                        CallRecursiveEven();
+                        break;
                     case '0':
                         Environment.Exit(0);
                         break;
@@ -85,9 +89,33 @@ namespace SkalProj_Datastrukturer_Minne
             }
         }
 
-        private static void WriteLine(string message)
+        private static void CallRecursiveEven()
         {
-            Console.WriteLine(message);
+            WriteLine("Please input an integer");
+
+            string input = GetInput();
+
+            try
+            {
+                int integer = int.Parse(input);
+
+                Console.Write($"RecursiveEven({integer}) = ");
+                WriteLine(RecursiveEven(integer));
+            }
+            catch (Exception ex) { WriteLine(ex.Message); }
+        }
+
+        private static int RecursiveEven(int n)
+        {
+            if (n == 2)
+                return 2;
+
+            return (RecursiveEven(n - 1) + 2);
+        }
+
+        private static void WriteLine<T>(T message)
+        {
+            Console.WriteLine($"{message}");
             Console.WriteLine();
         }
 
