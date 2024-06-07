@@ -40,7 +40,8 @@ namespace SkalProj_Datastrukturer_Minne
 
             while (true)
             {
-                WriteLine("Please navigate through the menu by inputing the number \n(1, 2, 3 ,4, 0) of your choice."
+                WriteLine("MAIN MENU"
+                    + "\nPlease navigate through the menu by inputing the number \n(1, 2, 3, 4, 5, 6, 0) of your choice."
                     + "\n1. Examine a List."
                     + "\n2. Examine a Queue."
                     + "\n3. Examine a Stack."
@@ -95,7 +96,7 @@ namespace SkalProj_Datastrukturer_Minne
                         Environment.Exit(0);
                         break;
                     default:
-                        WriteLine("Please enter some valid input (0, 1, 2, 3, 4).");
+                        WriteLine("Please enter some valid input (0, 1, 2, 3, 4, 5, 6).");
                         break;
                 }
             }
@@ -108,7 +109,8 @@ namespace SkalProj_Datastrukturer_Minne
 
             do
             {
-                WriteLine("Please navigate through the menu by inputing the character \n(1, 2, m) of your choice."
+                WriteLine("ITERATION SUB MENU"
+                    + "\nPlease navigate through the menu by inputing the character \n(1, 2, m) of your choice."
                     + "\n1. Calculate the n:th even integer."
                     + "\n2. Calculate the n:th integer in the Fibonacci sequence."
                     + "\nm. Return to the main menu.");
@@ -186,7 +188,8 @@ namespace SkalProj_Datastrukturer_Minne
 
             do
             {
-                WriteLine("Please navigate through the menu by inputing the character \n(1, 2, m) of your choice."
+                WriteLine("RECURSION SUB MENU"
+                    + "\nPlease navigate through the menu by inputing the character \n(1, 2, m) of your choice."
                     + "\n1. Calculate the n:th even integer."
                     + "\n2. Calculate the n:th integer in the Fibonacci sequence."
                     + "\nm. Return to the main menu.");
@@ -324,7 +327,8 @@ namespace SkalProj_Datastrukturer_Minne
 
             do
             {
-                WriteLine("Please navigate through the menu by inputing the character \n(+, -, m) of your choice."
+                WriteLine("LIST SUB MENU"
+                    + "\nPlease navigate through the menu by inputing the character \n(+, -, m) of your choice."
                     + "\n+. Add the rest of the input to the list."
                     + "\n-. Remove the rest of the input from the list."
                     + "\nm. Return to the main menu.");
@@ -393,7 +397,8 @@ namespace SkalProj_Datastrukturer_Minne
             const char exitAction = 'm';
 
             do {
-                WriteLine("Please navigate through the menu by inputing the character \n(+, -, m) of your choice."
+                WriteLine("QUEUE SUB MENU"
+                        + "\nPlease navigate through the menu by inputing the character \n(+, -, m) of your choice."
                         + "\n+. Enqueue rest of the input."
                         + "\n-. Dequeue first item in queue."
                         + "\nm. Return to the main menu.");
