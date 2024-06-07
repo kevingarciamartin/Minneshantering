@@ -270,16 +270,16 @@ namespace SkalProj_Datastrukturer_Minne
              * så länge det kommer nya kunder.
              */
 
-            ReverseText();
-        }
-
-        private static void ReverseText()
-        {
-            Stack<char> theStack = new();
-
             WriteLine("Please enter a string that you would like to see reversed");
 
             string input = GetInput();
+
+            ReverseText(input);
+        }
+
+        private static void ReverseText(string input)
+        {
+            Stack<char> theStack = new();
 
             char[] inputCharArray = input.ToCharArray();
 
