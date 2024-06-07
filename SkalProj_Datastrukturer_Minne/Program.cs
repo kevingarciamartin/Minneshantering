@@ -45,7 +45,7 @@ namespace SkalProj_Datastrukturer_Minne
                     + "\n2. Examine a Queue"
                     + "\n3. Examine a Stack"
                     + "\n4. CheckParenthesis"
-                    + "\n5. Calculate the n:th even integer with recursion"
+                    + "\n5. Recursion"
                     + "\n0. Exit the application");
                 char input = ' '; //Creates the character input to be used with the switch-case below.
                 try
@@ -77,7 +77,7 @@ namespace SkalProj_Datastrukturer_Minne
                      * and iterative exercises.
                      */
                     case '5':
-                        CallRecursiveEven();
+                        CallRecursiveFunctions();
                         break;
                     case '0':
                         Environment.Exit(0);
@@ -87,6 +87,41 @@ namespace SkalProj_Datastrukturer_Minne
                         break;
                 }
             }
+        }
+
+        private static void CallRecursiveFunctions()
+        {
+            char selectedAction;
+            const char exitAction = 'm';
+
+            do
+            {
+                WriteLine("Please navigate through the menu by inputing the character \n(1, 2, m) of your choice"
+                    + "\n1. Calculate the n:th even integer"
+                    + "\n2. Calculate the n:th integer in the Fibonacci sequence"
+                    + "\nm. Return to the main menu");
+
+                string input = GetInput();
+
+                selectedAction = input[0];
+
+                switch (selectedAction)
+                {
+                    case '1':
+                        CallRecursiveEven();
+                        break;
+                    case '2':
+                        
+                        break;
+                    case exitAction:
+                        break;
+                    default:
+                        WriteLine("Please enter some valid input (+, -, m)");
+                        break;
+                }
+
+            } while (selectedAction != exitAction);
+
         }
 
         private static void CallRecursiveEven()
@@ -107,8 +142,8 @@ namespace SkalProj_Datastrukturer_Minne
 
         private static int RecursiveEven(int n)
         {
-            if (n == 2)
-                return 2;
+            if (n == 0)
+                return 0;
 
             return (RecursiveEven(n - 1) + 2);
         }
@@ -171,7 +206,7 @@ namespace SkalProj_Datastrukturer_Minne
 
             do
             {
-                WriteLine("Please navigate through the menu by inputing the character \n(+, -) of your choice"
+                WriteLine("Please navigate through the menu by inputing the character \n(+, -, m) of your choice"
                     + "\n+. Add the rest of the input to the list"
                     + "\n-. Remove the rest of the input from the list"
                     + "\nm. Return to the main menu");
@@ -194,7 +229,7 @@ namespace SkalProj_Datastrukturer_Minne
                     case exitAction:
                         break;
                     default:
-                        WriteLine("Please enter some valid input (+, -, M)");
+                        WriteLine("Please enter some valid input (+, -, m)");
                         break;
                 }
 
@@ -240,7 +275,7 @@ namespace SkalProj_Datastrukturer_Minne
             const char exitAction = 'm';
 
             do {
-                WriteLine("Please navigate through the menu by inputing the character \n(+, -) of your choice"
+                WriteLine("Please navigate through the menu by inputing the character \n(+, -, m) of your choice"
                         + "\n+. Enqueue rest of the input"
                         + "\n-. Dequeue first item in queue"
                         + "\nm. Return to the main menu");
@@ -270,7 +305,7 @@ namespace SkalProj_Datastrukturer_Minne
                     case exitAction:
                         break;
                     default:
-                        WriteLine("Please enter some valid input (+, -, M)");
+                        WriteLine("Please enter some valid input (+, -, m)");
                         break;
                 }
 
